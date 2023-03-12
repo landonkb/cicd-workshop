@@ -1,0 +1,55 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+}
+
+.fizz-buzzer-container {
+    max-width: 500px;
+    min-width: 350px;
+}
+
+.fizz-buzzer-main {
+    width: 100%;
+    padding: 20px;
+    border: 1px solid #d8d8d8;
+    border-radius: 5px 5px 0px 0px;
+    box-sizing: border-box;
+}
+
+.fizz-buzzer-inputs{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;  
+}
+
+.fizz-buzzer-inputs input{
+    width: 35%;
+    padding: 10px;
+}
+
+.fizz-buzzer-counts {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fizz-buzzer-output {
+    width: 100%;
+    padding: 20px;
+    border: 1px solid #d8d8d8;
+    max-height: 50vh;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.text-center {
+    text-align: center;
+}

@@ -5,38 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CI/CD Workshop</title>
-
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            width: 100vw;
-        }
-        .fizz-buzzer-main {
-            padding: 20px;
-            border: 1px solid #d8d8d8;
-            border-radius: 5px;
-        }
-
-        .fizz-buzzer-counts {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .fizz-buzzer-output {
-            border: 1px solid #d8d8d8;  
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="fizz-buzzer-container">
         <div class="fizz-buzzer-main">
             <div class="fizz-buzzer-inputs">
-                <input type="number">
-                <input type="number">
+                <input type="number" placeholder="From: 1">
+                <SPAN>to</SPAN>
+                <input type="number" placeholder="To: 100">
             </div>
             <hr>
             <div class="fizz-buzzer-counts">
@@ -47,7 +24,36 @@
         </div>
         <div class="fizz-buzzer-output">
             <!-- API data goes here -->
+            <div class="text-center">
+                <p>No data available yet...</p>
+            </div>
+            <p>1</p>
+            <p>2</p>
+            <p>3 - Fizz</p>
+            <p>4</p>
+            <p>4</p>
+            <p>4</p>
+            <p>4</p>
+            <p>4</p>
+            <p>4</p>
+            <p>4</p>
+            <p>4</p>
+            <p>5 - Buzz</p>
         </div>
     </div>
+
+    <script src="./node_modules/axios/dist/axios.min.js"></script>
+
+    <script>
+        axios.get('./api/getFizzBuzz.php')
+            .then(function (response) {
+                // handle success
+                console.log(response);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+    </script>
 </body>
 </html>
