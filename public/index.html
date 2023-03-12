@@ -10,16 +10,17 @@
 <body>
     <div class="fizz-buzzer-container">
         <div class="fizz-buzzer-main">
-            <div class="fizz-buzzer-inputs">
-                <input type="number" placeholder="From: 1">
-                <SPAN>to</SPAN>
-                <input type="number" placeholder="To: 100">
-            </div>
+            <form class="fizz-buzzer-inputs">
+                <input type="number" placeholder="From number">
+                <span>to</span>
+                <input type="number" placeholder="To number">
+                <input type="submit" hidden />
+            </form>
             <hr>
             <div class="fizz-buzzer-counts">
-                <span>Fizz: </span>
-                <span>Buzz: </span>
-                <span>FizzBuzz: </span>
+                <span>Fizz: 0</span>
+                <span>Buzz: 0</span>
+                <span>FizzBuzz: 0</span>
             </div>
         </div>
         <div class="fizz-buzzer-output">
@@ -42,18 +43,22 @@
         </div>
     </div>
 
-    <script src="./node_modules/axios/dist/axios.min.js"></script>
+    <script src="../node_modules/axios/dist/axios.min.js"></script>
 
     <script>
-        axios.get('./api/getFizzBuzz.php')
-            .then(function (response) {
-                // handle success
-                console.log(response);
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            })
+        document.querySelector('.fizz-buzzer-inputs').addEventListener("submit", function(event) {
+            event.preventDefault();
+            console.log(event);
+            axios.get('../api/getFizzBuzz.php')
+                .then(function (response) {
+                    // handle success
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                })
+        });
     </script>
 </body>
 </html>
