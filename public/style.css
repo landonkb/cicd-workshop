@@ -11,6 +11,10 @@ body {
     margin: 0;
 }
 
+.title {
+    margin: 5px 0;
+}
+
 .fizz-buzzer-container {
     max-width: 500px;
     min-width: 350px;
@@ -31,7 +35,7 @@ body {
 }
 
 .fizz-buzzer-inputs input{
-    width: 35%;
+    width: 42%;
     padding: 10px;
 }
 

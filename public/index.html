@@ -9,6 +9,7 @@
 </head>
 <body>
     <div class="fizz-buzzer-container">
+        <h1 class="title">FizzBuzzer</h1>
         <div class="fizz-buzzer-main">
             <form class="fizz-buzzer-inputs">
                 <input type="number" placeholder="From number">
@@ -48,7 +49,8 @@
     <script>
         document.querySelector('.fizz-buzzer-inputs').addEventListener("submit", function(event) {
             event.preventDefault();
-            console.log(event);
+            console.dir(event.target[0].value);
+            console.dir(event.target[1].value); // could also call them directly
             axios.get('../api/getFizzBuzz.php')
                 .then(function (response) {
                     // handle success
