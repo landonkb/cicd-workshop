@@ -29,18 +29,6 @@
             <div class="text-center">
                 <p>No data available yet...</p>
             </div>
-            <p>1</p>
-            <p>2</p>
-            <p>3 - Fizz</p>
-            <p>4</p>
-            <p>4</p>
-            <p>4</p>
-            <p>4</p>
-            <p>4</p>
-            <p>4</p>
-            <p>4</p>
-            <p>4</p>
-            <p>5 - Buzz</p>
         </div>
     </div>
 
@@ -55,25 +43,25 @@
             axios.get(url)
                 .then(function (response) {
                     // handle success
-                    console.log(response);
                     let fizzBuzzCount = 0;
                     let fizzCount = 0;
                     let buzzCount = 0;
                     const outputContainer = document.createElement('div')
                     response.data.forEach(element => {
-                        if (element.includes("FizzBuzz")) {
+                        if (element.includes("- FizzBuzz")) {
                             fizzBuzzCount++;
-                        } else if (element.includes("Fizz")) {
+                        } else if (element.includes("- Fizz")) {
                             fizzCount++;
-                        } else if (element.includes("Buzz")) {
+                        } else if (element.includes("- Buzz")) {
                             buzzCount++;
                         }
                         const paragraphElement = document.createElement('p');
                         paragraphElement.innerHTML = element; 
                         outputContainer.appendChild(paragraphElement)
                     });
-                    document.querySelector('.fizz-buzzer-output').textContent = '';
-                    document.querySelector('.fizz-buzzer-output').appendChild(outputContainer);
+                    fizzBuzzerOutput = document.querySelector('.fizz-buzzer-output');
+                    fizzBuzzerOutput.textContent = '';
+                    fizzBuzzerOutput.appendChild(outputContainer);
 
                     document.querySelector('.fizz-buzz').innerHTML = `FizzBuzz: ${fizzBuzzCount}`;
                     document.querySelector('.fizz').innerHTML = `Fizz: ${fizzCount}`;
