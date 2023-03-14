@@ -19,9 +19,9 @@
             </form>
             <hr>
             <div class="fizz-buzzer-counts">
-                <span>Fizz: 0</span>
-                <span>Buzz: 0</span>
-                <span>FizzBuzz: 0</span>
+                <span class="fizz">Fizz: 0</span>
+                <span class="buzz">Buzz: 0</span>
+                <span class="fizz-buzz">FizzBuzz: 0</span>
             </div>
         </div>
         <div class="fizz-buzzer-output">
@@ -49,12 +49,35 @@
     <script>
         document.querySelector('.fizz-buzzer-inputs').addEventListener("submit", function(event) {
             event.preventDefault();
-            console.dir(event.target[0].value);
-            console.dir(event.target[1].value); // could also call them directly
-            axios.get('../api/getFizzBuzz.php')
+            const minValue = event.target[0].value ?? 1;
+            const maxValue = event.target[1].value ?? 100;
+            const url = `../api/getFizzBuzz.php?minValue=${minValue}&maxValue=${maxValue}`
+            axios.get(url)
                 .then(function (response) {
                     // handle success
                     console.log(response);
+                    let fizzBuzzCount = 0;
+                    let fizzCount = 0;
+                    let buzzCount = 0;
+                    const outputContainer = document.createElement('div')
+                    response.data.forEach(element => {
+                        if (element.includes("FizzBuzz")) {
+                            fizzBuzzCount++;
+                        } else if (element.includes("Fizz")) {
+                            fizzCount++;
+                        } else if (element.includes("Buzz")) {
+                            buzzCount++;
+                        }
+                        const paragraphElement = document.createElement('p');
+                        paragraphElement.innerHTML = element; 
+                        outputContainer.appendChild(paragraphElement)
+                    });
+                    document.querySelector('.fizz-buzzer-output').textContent = '';
+                    document.querySelector('.fizz-buzzer-output').appendChild(outputContainer);
+
+                    document.querySelector('.fizz-buzz').innerHTML = `FizzBuzz: ${fizzBuzzCount}`;
+                    document.querySelector('.fizz').innerHTML = `Fizz: ${fizzCount}`;
+                    document.querySelector('.buzz').innerHTML = `Buzz: ${buzzCount}`;
                 })
                 .catch(function (error) {
                     // handle error

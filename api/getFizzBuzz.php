@@ -6,4 +6,7 @@
 
     $fizzBuzz = new FizzBuzz();
 
-    echo json_encode($fizzBuzz->run());
+    $minValue = isset($_GET['minValue']) ? (int) $_GET['minValue'] : 1;
+    $maxValue = isset($_GET['maxValue']) ? (int) $_GET['maxValue'] : 100;
+
+    echo json_encode($fizzBuzz->run($minValue, $maxValue));
