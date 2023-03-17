@@ -32,8 +32,8 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i private_key ${EC2_SSH_USERNAME}@${EC2_SSH_PUBLIC_IP_ADDRESS} '
           
             cd /var/www/html &&
-            git checkout main &&
-            git fetch --all &&
-            git reset --hard origin/main &&
-            git pull origin main
+            sudo git checkout main &&
+            sudo git fetch --all &&
+            sudo git reset --hard origin/main &&
+            sudo git pull origin main
           '
