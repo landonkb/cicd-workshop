@@ -63,18 +63,20 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      # - name: Deploy in EC2
-      #   env:
-      #       RSA_PRIVATE_KEY: ${{ secrets.RSA_PRIVATE_KEY  }}
-      #       EC2_SSH_USERNAME : ${{ secrets.EC2_SSH_USERNAME  }}
-      #       EC2_SSH_PUBLIC_IP_ADDRESS : ${{ secrets.EC2_SSH_PUBLIC_IP_ADDRESS  }}
-      #   run: |
-      #     echo "$RSA_PRIVATE_KEY" > private_key && chmod 600 private_key
-      #     ssh -o StrictHostKeyChecking=no -i private_key ${EC2_SSH_USERNAME}@${EC2_SSH_PUBLIC_IP_ADDRESS} '
+      - name: Deploy in EC2
+        env:
+            RSA_PRIVATE_KEY: ${{ secrets.RSA_PRIVATE_KEY  }}
+            EC2_SSH_USERNAME : ${{ secrets.EC2_SSH_USERNAME  }}
+            EC2_SSH_PUBLIC_IP_ADDRESS : ${{ secrets.EC2_SSH_PUBLIC_IP_ADDRESS  }}
+        run: |
+          echo "$RSA_PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${EC2_SSH_USERNAME}@${EC2_SSH_PUBLIC_IP_ADDRESS} '
           
-      #       cd /var/www/html &&
-      #       sudo git checkout main &&
-      #       sudo git fetch --all &&
-      #       sudo git reset --hard origin/main &&
-      #       sudo git pull origin main
-      #     '
+            cd /var/www/html &&
+            sudo git checkout main &&
+            sudo git fetch --all &&
+            sudo git reset --hard origin/main &&
+            sudo git pull origin main &&
+            sudo npm install &&
+            sudo composer install
+          '
