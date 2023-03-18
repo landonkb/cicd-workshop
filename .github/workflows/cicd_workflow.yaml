@@ -9,11 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
       - uses: actions/cache@v3
+      - uses: actions/setup-node@v3
 
       - name: Cache Node Modules
-        uses: actions/setup-node@v3
         id: cache-node-modules
         with:
           path: '**/node_modules'
@@ -24,23 +23,22 @@ jobs:
         run: npm install
 
       - name: Cache Composer Packages
-        uses: php-actions/composer@v6
         id: cache-vendor
         with:
           path: '**/vendor'
           key: ${{ runner.os }}-build-${{ hashFiles('**/composer.lock) }}
 
       - name: Install Composer Packages
+        uses: php-actions/composer@v6
         if: ${{ steps.cache-vendor.outputs.cache-hit != 'true' }}
-        run: composer install
 
   test:
     runs-on: ubunut-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/cache@v3
 
       - name: Use Composer and Node Modules Caches
-        uses: actions/cache@v3
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
@@ -50,7 +48,6 @@ jobs:
 
       - name: Run Unit Tests
         uses: php-actions/phpunit@v3
-        run: phpunit
 
   deploy:
     needs: build
