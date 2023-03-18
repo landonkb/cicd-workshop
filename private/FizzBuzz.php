@@ -8,7 +8,7 @@
                 $fizzBuzzString = "$i";
 
                 if ($i % 3 == 0 || $i % 5 == 0) {
-                    $fizzBuzzString .= " - ";
+                    $fizzBuzzStrin .= " - ";
                 }
                 
                 if ($i % 3 == 0) {
