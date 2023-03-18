@@ -38,7 +38,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: php-actions/phpunit@v3
 
       - name: Use Node Modules Cache
         uses: actions/cache@v3
@@ -53,7 +52,11 @@ jobs:
           key: ${{ runner.os }}-build-${{ hashFiles('**/composer.lock') }}
 
       - name: Run Unit Tests
-        run: phpunit
+        uses: php-actions/phpunit@v3
+        with:
+          bootstrap: vendor/autoload.php
+          configuration: test/phpunit.xml
+          args: --coverage-text
 
   deploy:
     needs: test
