@@ -55,7 +55,7 @@ jobs:
         uses: php-actions/phpunit@v3
         with:
           bootstrap: vendor/autoload.php
-          args: --coverage-text
+          args: tests --coverage-text
 
   deploy:
     needs: test
