@@ -78,5 +78,5 @@ jobs:
             sudo git reset --hard origin/main &&
             sudo git pull origin main &&
             sudo npm install &&
-            sudo composer install
+            sudo composer install --no-dev
           '
