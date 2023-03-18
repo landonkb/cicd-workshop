@@ -10,7 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
-      - uses: php-actions/composer@v6
 
       - name: Cache Node Modules
         uses: actions/cache@v3
@@ -32,7 +31,7 @@ jobs:
 
       - name: Install Composer Packages
         if: ${{ steps.cache-vendor.outputs.cache-hit != 'true' }}
-        run: composer install
+        uses: php-actions/composer@v6
 
   test:
     runs-on: ubunut-latest
