@@ -27,7 +27,7 @@ jobs:
         id: cache-vendor
         with:
           path: '**/vendor'
-          key: ${{ runner.os }}-build-${{ hashFiles('**/composer.lock) }}
+          key: ${{ runner.os }}-build-${{ hashFiles('**/composer.lock') }}
 
       - name: Install Composer Packages
         if: ${{ steps.cache-vendor.outputs.cache-hit != 'true' }}
@@ -48,7 +48,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: '**/vendor'
-          key: ${{ runner.os }}-build-${{ hashFiles('**/composer.lock) }}
+          key: ${{ runner.os }}-build-${{ hashFiles('**/composer.lock') }}
 
       - name: Run Unit Tests
         uses: php-actions/phpunit@v3
