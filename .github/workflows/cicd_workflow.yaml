@@ -50,7 +50,7 @@ jobs:
 
       - name: Run Unit Tests
         uses: php-actions/phpunit@v3
-          run: phpunit
+        run: phpunit
 
   deploy:
     needs: build
