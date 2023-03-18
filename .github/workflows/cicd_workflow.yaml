@@ -9,10 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/cache@v3
+      - uses: actions/setup-node@v3
+      - uses: php-actions/composer@v6
 
       - name: Cache Node Modules
-        uses: actions/setup-node@v3
+        uses: actions/cache@v3
         id: cache-node-modules
         with:
           path: '**/node_modules'
@@ -23,7 +24,7 @@ jobs:
         run: npm install
 
       - name: Cache Composer Packages
-        uses: php-actions/composer@v6
+        uses: actions/cache@v3
         id: cache-vendor
         with:
           path: '**/vendor'
